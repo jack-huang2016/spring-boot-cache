@@ -15,7 +15,6 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 /**
@@ -55,7 +54,7 @@ public class DemoServiceImpl implements DemoService{
     }
 
     @Override
-    @Cacheable(value = "userCache",key = "#user.id")
+    @Cacheable(value = "userCache",key = "#user.id",unless = "#result == null")
     public User findOne(User user) throws ServiceException {
         try {
             Optional<User> op = userDao.findById(user.getId());
