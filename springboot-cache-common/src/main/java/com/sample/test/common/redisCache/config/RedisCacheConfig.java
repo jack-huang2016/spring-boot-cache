@@ -21,6 +21,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -105,4 +106,39 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
             return sb.toString();
         };
     }
+
+    /**
+     *@描述 异常处理，当Redis发生异常时拦截，可打印日志等操作，但是程序正常走，不会抛异常
+     *@参数  []
+     *@返回值  org.springframework.cache.interceptor.CacheErrorHandler
+     *@创建人  huang.yj
+     *@创建时间  2019/12/5
+     */
+    /*@Bean
+    @Override
+    public CacheErrorHandler errorHandler() {
+        log.info("初始化 -> [{}]", "Redis CacheErrorHandler");
+        CacheErrorHandler cacheErrorHandler = new CacheErrorHandler() {
+            @Override
+            public void handleCacheGetError(RuntimeException e, Cache cache, Object key) {
+                log.error("Redis occur handleCacheGetError：key -> [{}]", key, e);
+            }
+
+            @Override
+            public void handleCachePutError(RuntimeException e, Cache cache, Object key, Object value) {
+                log.error("Redis occur handleCachePutError：key -> [{}]；value -> [{}]", key, value, e);
+            }
+
+            @Override
+            public void handleCacheEvictError(RuntimeException e, Cache cache, Object key)    {
+                log.error("Redis occur handleCacheEvictError：key -> [{}]", key, e);
+            }
+
+            @Override
+            public void handleCacheClearError(RuntimeException e, Cache cache) {
+                log.error("Redis occur handleCacheClearError：", e);
+            }
+        };
+        return cacheErrorHandler;
+    }*/
 }
