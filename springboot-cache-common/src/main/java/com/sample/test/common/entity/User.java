@@ -14,7 +14,7 @@ import java.util.Date;
 
 /**
  * 〈用户实体类〉
- *
+ *  使用JPA注解配置映射关系
  * @author huang.yj
  * @create 2019/11/12
  * @since 0.0.1
@@ -40,7 +40,6 @@ public class User {
 
     private int status;
 
-    @Column(name="isLocked", length = 1)
     private int isLocked;
 
     @Column(name="update_time")
